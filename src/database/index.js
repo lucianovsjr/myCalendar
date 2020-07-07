@@ -2,6 +2,10 @@ import Sequelize from 'sequelize';
 
 import dbConfig from '../config/database';
 
+import User from '../app/models/User';
+
+const models = [User];
+
 class Database {
   constructor() {
     this.init();
@@ -15,6 +19,8 @@ class Database {
     } catch (error) {
       console.error('Unable to connect to the database', error);
     }
+
+    models.map((model) => model.init(this.connection));
   }
 }
 

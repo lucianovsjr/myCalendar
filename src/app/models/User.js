@@ -1,18 +1,31 @@
-const { Model } = require('sequelize');
+import { Model, DataTypes } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model {}
-  User.init(
-    {
-      email: DataTypes.STRING,
-      name: DataTypes.STRING,
-      provider: DataTypes.BOOLEAN,
-      password_hash: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: 'User',
-    }
-  );
-  return User;
-};
+import bcrypt from 'bcryptjs';
+
+class User extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        email: DataTypes.STRING,
+        name: DataTypes.STRING,
+        provider: DataTypes.BOOLEAN,
+        password_hash: DataTypes.STRING,
+        password: DataTypes.VIRTUAL,
+      },
+      {
+        sequelize,
+        modelName: 'User',
+      }
+    );
+
+    this.addHook('beforeSave', (user) => {
+      if (user.password) {
+        user.password_hash = bcrypt.hashSync(user.password, 8);
+      }
+    });
+
+    return this;
+  }
+}
+
+export default User;
