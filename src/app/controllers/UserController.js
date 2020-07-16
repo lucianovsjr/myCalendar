@@ -24,6 +24,24 @@ class UserController {
 
     return res.json({ id, email, name, provider });
   }
+
+  async update(req, res) {
+    const { name } = req.body;
+
+    const user = await User.findByPk(req.userId);
+
+    if (!user) {
+      return res.status(400).json({ error: 'User not exists' });
+    }
+
+    user.name = name;
+    await user.save();
+
+    return res.json({
+      name: user.name,
+      email: user.email
+    });
+  }
 }
 
 export default new UserController();
