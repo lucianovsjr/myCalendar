@@ -39,7 +39,7 @@ class UserController {
 
     return res.json({
       name: user.name,
-      email: user.email
+      email: user.email,
     });
   }
 }

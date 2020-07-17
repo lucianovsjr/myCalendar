@@ -18,14 +18,14 @@ class SessionController {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    const { id, name } = user;
+    const { id, name, provider } = user;
 
     const token = jwt.sign({ id }, authConfig.secretKey, {
       algorithm: authConfig.algorithm,
       expiresIn: authConfig.expiresIn,
     });
 
-    return res.json({ user: { email, name }, token });
+    return res.json({ user: { name, email, provider }, token });
   }
 }
 
