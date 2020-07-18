@@ -3,8 +3,9 @@ import Sequelize from 'sequelize';
 import dbConfig from '../config/database';
 
 import User from '../app/models/User';
+import Appointment from '../app/models/Appointment';
 
-const models = [User];
+const models = [User, Appointment];
 
 class Database {
   constructor() {
@@ -20,7 +21,11 @@ class Database {
       console.error('Unable to connect to the database', error);
     }
 
-    models.map((model) => model.init(this.connection));
+    models
+      .map((model) => model.init(this.connection))
+      .map(
+        (model) => model.associate && model.associate(this.connection.models)
+      );
   }
 }
 
