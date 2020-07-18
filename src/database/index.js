@@ -4,8 +4,9 @@ import dbConfig from '../config/database';
 
 import User from '../app/models/User';
 import Appointment from '../app/models/Appointment';
+import TemplateSchedule from '../app/models/TemplateSchedule';
 
-const models = [User, Appointment];
+const models = [User, Appointment, TemplateSchedule];
 
 class Database {
   constructor() {

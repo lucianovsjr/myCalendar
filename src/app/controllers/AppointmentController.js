@@ -8,6 +8,10 @@ class AppointmentController {
 
     return res.json(appointments);
   }
+
+  async store(req, res) {
+    const { date, provider_id } = req.body;
+  }
 }
 
 export default new AppointmentController();
