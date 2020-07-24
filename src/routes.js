@@ -18,8 +18,9 @@ routes.get('/users', UserController.show);
 routes.put('/users', UserController.update);
 
 routes.get('/appointments', AppointmentController.show);
+routes.post('/appointments', AppointmentController.store);
 
-routes.get('/templates', TemplateScheduleController.show);
+routes.get('/templates', TemplateScheduleController.index);
 routes.post('/templates', TemplateScheduleController.store);
 
 export default routes;

@@ -3,25 +3,25 @@ import { parseISO } from 'date-fns';
 import TemplateSchedule from '../models/TemplateSchedule';
 
 class TemplateScheduleController {
-  async show(req, res) {
-    const templates = await TemplateSchedule.findAll({
+  async index(req, res) {
+    const template = await TemplateSchedule.findOne({
       where: { provider_id: req.userId },
     });
 
-    return res.json(templates);
+    return res.json(template);
   }
 
   async store(req, res) {
-    const { service_time, office_hours_start, office_hours_end } = req.body;
+    const { serviceTime, dateStart, dateEnd } = req.body;
 
     const templateExists = await TemplateSchedule.findOne({
       where: { provider_id: req.userId },
     });
 
     const datas = {
-      service_time,
-      office_hours_start: parseISO(office_hours_start),
-      office_hours_end: parseISO(office_hours_end),
+      service_time: serviceTime,
+      office_hours_start: parseISO(dateStart),
+      office_hours_end: parseISO(dateEnd),
       provider_id: req.userId,
     };
 

@@ -2,15 +2,28 @@ import Appointment from '../models/Appointment';
 
 class AppointmentController {
   async show(req, res) {
+    const { templateId } = req.query;
+
     const appointments = await Appointment.findAll({
-      where: { user_id: req.userId },
+      where: { provider_id: req.userId, template_id: templateId },
     });
 
-    return res.json(appointments);
+    res.json(appointments);
   }
 
   async store(req, res) {
-    const { date, provider_id } = req.body;
+    const { datasHours, templateId } = req.body;
+
+    console.log(datasHours, templateId);
+    const resDatas = datasHours.forEach(async (data) => {
+      return await Appointment.create({
+        date: data.date,
+        provider_id: req.userId,
+        template_id: templateId,
+      });
+    });
+
+    res.json(resDatas);
   }
 }
 
