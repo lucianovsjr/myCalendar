@@ -14,7 +14,6 @@ class AppointmentController {
   async store(req, res) {
     const { datasHours, templateId } = req.body;
 
-    console.log(datasHours, templateId);
     const resDatas = datasHours.forEach(async (data) => {
       return await Appointment.create({
         date: data.date,

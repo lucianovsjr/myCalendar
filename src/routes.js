@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import UserController from './app/controllers/UserController';
+import ProviderController from './app/controllers/ProviderController';
 import SessionController from './app/controllers/SessionController';
 import AppointmentController from './app/controllers/AppointmentController';
 import TemplateScheduleController from './app/controllers/TemplateScheduleController';
@@ -16,6 +17,8 @@ routes.use(middlewareAuth);
 
 routes.get('/users', UserController.show);
 routes.put('/users', UserController.update);
+
+routes.get('/providers', ProviderController.show);
 
 routes.get('/appointments', AppointmentController.show);
 routes.post('/appointments', AppointmentController.store);
