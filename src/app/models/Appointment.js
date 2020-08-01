@@ -6,6 +6,12 @@ class appointment extends Model {
       {
         date: DataTypes.DATE,
         canceled_at: DataTypes.DATE,
+        available: {
+          type: DataTypes.VIRTUAL,
+          get() {
+            return !this.user_id;
+          },
+        },
       },
       {
         sequelize,

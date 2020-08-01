@@ -25,6 +25,7 @@ routes.get('/appointments', AppointmentController.show);
 routes.post('/appointments', AppointmentController.store);
 
 routes.get('/select-appointments', SelectAppointmentController.show);
+routes.put('/select-appointments', SelectAppointmentController.update);
 
 routes.get('/templates', TemplateScheduleController.index);
 routes.post('/templates', TemplateScheduleController.store);
