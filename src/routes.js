@@ -6,6 +6,7 @@ import SessionController from './app/controllers/SessionController';
 import AppointmentController from './app/controllers/AppointmentController';
 import SelectAppointmentController from './app/controllers/SelectAppointmentController';
 import TemplateScheduleController from './app/controllers/TemplateScheduleController';
+import MyAppointmentController from './app/controllers/MyAppointmentsController';
 
 import middlewareAuth from './app/middlewares/auth';
 
@@ -26,6 +27,8 @@ routes.post('/appointments', AppointmentController.store);
 
 routes.get('/select-appointments', SelectAppointmentController.show);
 routes.put('/select-appointments', SelectAppointmentController.update);
+
+routes.get('/my-appointments', MyAppointmentController.show);
 
 routes.get('/templates', TemplateScheduleController.index);
 routes.post('/templates', TemplateScheduleController.store);
