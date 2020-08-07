@@ -30,7 +30,7 @@ routes.put('/select-appointments', SelectAppointmentController.update);
 
 routes.get('/my-appointments', MyAppointmentController.show);
 
-routes.get('/templates', TemplateScheduleController.index);
+routes.get('/templates', TemplateScheduleController.show);
 routes.post('/templates', TemplateScheduleController.store);
 
 export default routes;
