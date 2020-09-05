@@ -11,6 +11,8 @@ class User extends Model {
         provider: DataTypes.BOOLEAN,
         password_hash: DataTypes.STRING,
         password: DataTypes.VIRTUAL,
+        fantasyName: DataTypes.STRING,
+        profession: DataTypes.STRING,
       },
       {
         sequelize,

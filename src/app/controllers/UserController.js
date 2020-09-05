@@ -20,13 +20,14 @@ class UserController {
       return res.status(401).json({ error: 'User not exists' });
     }
 
-    const { id, email, name, provider } = user;
+    const { id, email, name, provider, fantasyName, profession } = user;
+    console.log(id, email, name, provider, fantasyName, profession);
 
-    return res.json({ id, email, name, provider });
+    return res.json({ id, email, name, provider, fantasyName, profession });
   }
 
   async update(req, res) {
-    const { name } = req.body;
+    const { name, fantasyName, profession } = req.body;
 
     const user = await User.findByPk(req.userId);
 
@@ -35,6 +36,8 @@ class UserController {
     }
 
     user.name = name;
+    user.fantasyName = fantasyName;
+    user.profession = profession;
     await user.save();
 
     return res.json({
